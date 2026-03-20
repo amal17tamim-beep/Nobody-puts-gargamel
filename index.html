@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nobody Puts Gargamel in a Corner — The Examined Mind</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0e0d0b;
+      --surface: #141310;
+      --text: #e8e2d9;
+      --muted: #7a7266;
+      --accent: #c9a96e;
+      --accent-dim: #7a6140;
+      --rule: #2a2620;
+    }
+
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Spectral', Georgia, serif;
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+header {
+  padding: 2.5rem 2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.publication-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.publication-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.publication-name a:hover { color: var(--accent); }
+
+.header-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.hero {
+  max-width: 760px;
+  margin: 7rem auto 5rem;
+  padding: 0 2rem;
+  animation: fadeUp 1s ease both;
+}
+
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 3rem;
+  max-width: 580px;
+}
+
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.byline-line {
+  width: 32px;
+  height: 1px;
+  background: var(--accent-dim);
+}
+
+.byline-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.divider {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.divider hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 4rem 0;
+}
+
+article {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+  animation: fadeUp 1.2s ease both;
+  animation-delay: 0.15s;
+}
+
+p {
+  margin-bottom: 1.7rem;
+  color: #d4cdc3;
+}
+
+.drop-cap::first-letter {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4.8em;
+  font-weight: 600;
+  line-height: 0.75;
+  float: left;
+  margin-right: 0.1em;
+  margin-top: 0.08em;
+  color: var(--accent);
+}
+
+.section-break {
+  text-align: center;
+  margin: 3.5rem 0;
+  color: var(--accent-dim);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+}
+
+blockquote {
+  border-left: 2px solid var(--accent);
+  margin: 3rem 0 3rem -1.5rem;
+  padding: 0.5rem 0 0.5rem 2rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1.55;
+  color: var(--text);
+  font-weight: 300;
+}
+
+.exchange {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 1.8rem 2rem;
+  margin: 2.5rem 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.exchange .line { margin-bottom: 0.3rem; }
+.exchange .line:last-child { margin-bottom: 0; }
+.exchange .line em {
+  color: var(--accent);
+  font-style: italic;
+  font-family: 'Spectral', serif;
+  font-size: 1rem;
+}
+
+em { font-style: italic; }
+
+.end-mark {
+  text-align: center;
+  margin-top: 5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--accent-dim);
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 2.4rem; }
+  blockquote { margin-left: 0; }
+  .hero { margin-top: 4rem; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="publication-name"><a href="#">The Examined Mind</a></div>
+    <div class="header-meta">Essay — 2026</div>
+  </header>
+
+  <div class="hero">
+    <span class="tag">On consciousness &amp; connection</span>
+    <h1>Nobody Puts <em>Gargamel</em> in a Corner</h1>
+    <p class="subtitle">or: blue ice cream, a borrowed spoon, and the unbearable relief of not having to explain yourself</p>
+    <div class="byline">
+      <div class="byline-line"></div>
+      <div class="byline-text">Amel Tamim</div>
+    </div>
+  </div>
+
+  <div class="divider"><hr></div>
+
+  <article>
+
+```
+<p class="drop-cap">He sat down next to me like he knew me.</p>
+
+<p>No "is this seat taken," no small talk warm-up, just sat. I didn't know this guy. We were at the same restaurant, same table, the rest of the group hadn't shown up yet and I was minding my business eating blue ice cream. Literally blue. The kind of color that has zero business being in food but here we are.</p>
+
+<p>He clocked the ice cream. Clocked me.</p>
+
+<p>"Can I try that?"</p>
+
+<p>Not <em>would you mind,</em> not <em>sorry is this weird</em> — just asked. Like we'd been friends for years and this was a completely normal Tuesday. And the strange part is I handed him the spoon like it was a completely normal Tuesday. No hesitation, no internal debate, just gave it to him with the energy of someone who's known this person for a long time. Internally I was like — okay who even is this — but externally I was already unbothered. The social math skipped about ten steps and neither of us said anything about that.</p>
+
+<p>He tried it. Handed the spoon back. Then looked at me very seriously and said:</p>
+
+<p>"You look like you ate a Smurf."</p>
+
+<p>I checked my reflection in the spoon.</p>
+
+<p>Not wrong.</p>
+
+<p>"Honestly fair," I said. "Annoying little creatures. I would have eaten one."</p>
+
+<p>He laughed — a real laugh, not the polite kind. Then something shifted and he goes: "I mean Gargamel had the right idea. Can't even blame him."</p>
+
+<p>And that was it. We were off.</p>
+
+<div class="section-break">· · ·</div>
+
+<p>"Okay but Gargamel gets done so dirty," I said, the <em>okay but</em> already carrying energy, he could tell. "Yes he's bitter. But you would be too."</p>
+
+<p>"The man has been publicly humiliated by creatures the size of an apple for decades."</p>
+
+<p>"Decades. And every single time they act innocent. They instigate, they escape, they go home and literally sing about it."</p>
+
+<p>"They absolutely instigate."</p>
+
+<p>"The Smurfs are chaos agents with amazing PR."</p>
+
+<p>"Gargamel is just the guy who never learned to let it go."</p>
+
+<p>"Which makes him tragic not evil. There's a difference."</p>
+
+<p>"Massive difference."</p>
+
+<p>We weren't being loud but we had the energy of people about to be. The restaurant was doing its thing around us, nobody cared. We'd known each other maybe twenty minutes and we already had the rhythm of people who've argued before — knowing when to push, when to let the other one land, finishing the thought before it's finished. That rhythm usually takes months to build. We just had it from the jump.</p>
+
+<blockquote>This is the thing that's hard to explain about certain people. There's no warm-up. No gradual revealing of layers. You just arrive at each other already in the middle of something.</blockquote>
+
+<p>Psychologists actually have a term for the brain wiring behind this — integrative complexity. Basically it's the capacity to hold something on multiple levels at once without needing to simplify it first. High integrative complexity means contradiction doesn't stress you out, you can read subtext without losing the surface, you can hold the joke and the serious point at the same time without it feeling like a split. When two people are built that way and end up next to each other the conversation skips the surface entirely because neither of them actually needs it.</p>
+
+<p>The Gargamel argument wasn't about Gargamel. It was two people immediately showing each other how their minds move and clocking something familiar.</p>
+
+<div class="section-break">· · ·</div>
+
+<p>Real talk though. There's a specific kind of loneliness that comes with thinking the way I think.</p>
+
+<p>Not depression, not isolation, nothing that dramatic. More like a permanent low-level translation lag. You're always in the room and slightly above it at the same time — reading the dynamic, clocking who's performing, who actually wants to be there, what's really being said underneath what's being said. You can be fully present and still be watching. You genuinely enjoy the trashy reality show and you're also reading it in real time — why it was made, who it's for, what cultural nerve it's feeding. You hold real beliefs about God and existence and simultaneously think most of the existing language around God is kind of embarrassing, too small, too neat, honestly a bit disrespectful to how big the thing probably is. You can defend your position and fully understand the other side and that doesn't feel like contradiction. It just feels like seeing the whole picture.</p>
+
+<p>This makes you weirdly adaptable. You can be anywhere, talk to anyone, find something genuine in almost any kind of room or conversation or culture. Sociologist Georg Simmel had a name for this — he called it the stranger. Not stranger as in you don't know anyone, but stranger as a specific social type: inside and outside simultaneously. Close enough to understand, far enough to see clearly. It sounds like a flex and kind of is, but it also means you never fully land anywhere.</p>
+
+<p>The thing is most people want you to pick a lane. And when you don't they either think you're not serious or they keep waiting for your real self to show up. They don't realize it already did.</p>
+
+<p>So you learn to move lightly. Show up fully, hold nothing too tight, just be a guest not a host. It's not detachment — you actually care about everything more than you let on. You just stopped needing the world to be less complicated than it is.</p>
+
+<p>The problem is that way of moving through life gets lonely. Not loudly. Just quietly, consistently, in the specific way of someone who is always slightly in translation.</p>
+
+<div class="section-break">· · ·</div>
+
+<p>The rest of the group showed up eventually. Table got bigger, energy split the way it does when a conversation becomes a gathering. We ended up across from each other in the new arrangement. Different conversations happening now, the evening doing its thing.</p>
+
+<p>I wasn't thinking about any of this.</p>
+
+<p>Then something happened at the table — one of those small moments where the dynamic shifts and most people are too inside it to catch it. Someone said something. The room adjusted without admitting it adjusted.</p>
+
+<p>I looked up.</p>
+
+<p>He was already looking at me.</p>
+
+<p>Not to share a joke. Not a smirk. The specific look that happens when two people have just watched the same thing from the same altitude and they both know that saying anything out loud would make it smaller than it is.</p>
+
+<div class="exchange">
+  <div class="line"><em>I see you seeing it.</em></div>
+  <div class="line"><em>I know.</em></div>
+  <div class="line"><em>I know you know.</em></div>
+</div>
+
+<p>Three seconds. Back to the room.</p>
+
+<p>Here's what's actually happening in your body in that moment — biologically your nervous system registers recognition before your brain has even fully processed it. Being seen accurately is rare. Most social interaction runs on everyone performing a slightly simplified version of themselves so others can keep up. When that suddenly isn't required, when someone just gets you completely and instantly with no translation needed, the relief lands in the body before it reaches the mind. It feels magnetic because honestly it kind of is. Two systems recognizing a match.</p>
+
+<p>That's what those three seconds were.</p>
+
+<div class="section-break">· · ·</div>
+
+<p>I don't have one clean word for this kind of person. Simmel's stranger comes closest — present everywhere, fully absorbed nowhere, inside and outside every room at once. Psychologists might say high integrative complexity. I just think of it as being high resolution in a world that mostly runs on lower settings.</p>
+
+<p>The tax is the loneliness. The gift is that when you find someone else at the same resolution, even just for one evening over blue ice cream and a genuinely heated defence of a cartoon villain, something in you that's been quietly working overtime just stops for a second.</p>
+
+<p>No translating.</p>
+
+<p>No running a simplified version of yourself so the room can follow.</p>
+
+<p>Just understood.</p>
+
+<p>And Gargamel was never the villain. He was just the only one at the table who refused to pretend the Smurfs were innocent.</p>
+
+<p>Some of us know exactly how that feels.</p>
+
+<div class="end-mark">— end —</div>
+```
+
+  </article>
+
+  <footer>
+    <span>© The Examined Mind</span>
+    <span>theexaminedmind.com</span>
+  </footer>
+
+</body>
+</html>
